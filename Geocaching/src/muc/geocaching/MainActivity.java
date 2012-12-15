@@ -3,12 +3,16 @@ package muc.geocaching;
 import java.util.LinkedList;
 import java.util.List;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
+import android.content.Context;
 import android.view.Menu;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
@@ -16,6 +20,13 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView tv = (TextView)findViewById(R.id.w_username);
+        	tv.setText( getUsername() );
+        	
+//        if(isOnline()){
+//        	//
+//        }
     }
 
     @Override
@@ -24,7 +35,8 @@ public class MainActivity extends Activity {
         return true;
     }
     
-    //show username example
+    
+    // Return Google Account username setup in the cellphone
     public String getUsername(){
         AccountManager manager = AccountManager.get(this); 
         Account[] accounts = manager.getAccountsByType("com.google"); 
@@ -46,11 +58,21 @@ public class MainActivity extends Activity {
         }else
             return null;
     }
+
+    // Verify if cellphone is connected to the internet
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        }
+        return false;
+    }
     
     /// **************************** show image example */
-    LinearLayout mLinearLayout;
+    /*LinearLayout mLinearLayout;
 
-    /*
+     
     protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
