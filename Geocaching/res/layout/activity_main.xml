@@ -4,6 +4,7 @@
     android:layout_height="match_parent" >
 
     <TextView
+        android:id="@+id/welcomeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -11,13 +12,14 @@
         android:layout_marginBottom="244dp"
         android:text="@string/welcome"
         tools:context=".MainActivity" />
-
+
     <TextView
         android:id="@+id/w_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignTop="@+id/textView1"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="31dp"
         tools:context=".MainActivity" />
-    
+
 </RelativeLayout>
